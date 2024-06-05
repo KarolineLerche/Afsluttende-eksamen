@@ -1,0 +1,131 @@
+/*---- GENERELLE REGLER ----*/
+*,
+:before,
+:after {
+  box-sizing: border-box; /* Sikrer, at padding og border inkluderes i elementets samlede bredde og højde */
+  margin: 0; /* Fjern standard margin */
+  padding: 0; /* Fjern standard padding */
+}
+
+body {
+  margin-top: 64px; /* Giver plads øverst på siden, f.eks. til en fast header */
+  
+}
+
+/*---- DIVERSE BAGGRUNDE ----*/
+.HomePage-background,
+.about-page {
+  position: relative; /* Positionerer elementer relativt til deres normale position */
+  min-height: 100vh; /* Sikrer, at elementerne altid mindst fylder hele browserhøjden */
+  background-size: cover; /* Sikrer, at baggrundsbilledet dækker hele elementet */
+  background-position: center; /* Centrerer baggrundsbilledet */
+  font-family: "font-body";
+}
+
+.HomePage-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/src/assets/drizzle.png'); /* Tilføjer et overlay billede */
+  background-size: cover;
+  background-position: center;
+  pointer-events: none; /* Sikrer, at elementet ikke blokerer interaktioner */
+  z-index: 1; /* Sørger for, at overlayet er ovenpå baggrundsbilledet */
+}
+
+.HomePage-background {
+  background-image: url('/src/assets/landing-bg.jpg'); /* Sætter baggrundsbilledet for hjemmesiden */
+  z-index: 0; /* Sikrer, at baggrundsbilledet er nederst */
+}
+
+.about-page {
+  background-image: url('/src/assets/drizzle-bg.jpg'); /* Sætter baggrundsbilledet for about-siden */
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/src/assets/modal-bg.jpg'); /* Sætter baggrundsbilledet for modal-baggrunden */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* Sørger for, at baggrunden er synlig, men under dialogen */
+}
+
+/*---- AGE MODAL ----*/
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrerer dialogboksen */
+  border-radius: 20px; /* Giver afrundede hjørner til dialogboksen */
+  padding: 8vw; /* Sætter padding til 8% af viewport-bredden */
+  width: max-content; /* Indstiller bredden til at passe til indholdet */
+  height: max-content; /* Indstiller højden til at passe til indholdet */
+  z-index: 1000; /* Sørger for, at dialogen er øverst */
+}
+
+/*---- LYKKEHJULET ----*/
+img[alt~="roulette-static"] {
+  position: absolute;
+  z-index: 5;
+  width: 7%; /* Sætter billedets bredde til 7% af dets forældre element */
+  right: 50px; /* Placerer billedet 50px fra højre kant */
+  top: 75px; /* Placerer billedet 75px fra toppen */
+  content: url("/src/assets/wheel-arrow.png"); /* Ændrer billedets kilde */
+}
+
+.wheel-container {
+  display: flex; /* Gør containeren til en flex-container */
+  flex-direction: column; /* Arrangerer børnene i en kolonne */
+  align-items: center; /* Centrerer børnene horisontalt */
+}
+
+#spin_wrapper {
+  position: relative; /* Ændret fra fixed til relative for at positionere i forhold til forældre element */
+  width: 300px; /* Sætter bredden til 300px */
+  height: 300px; /* Sætter højden til 300px */
+  margin-bottom: 20px; /* Tilføjer en bundmargen */
+  border-radius: 50%; /* Gør elementet cirkulært */
+  background: #ffffff; /* Sætter baggrundsfarven til hvid */
+  border: 2px solid #ffffff; /* Tilføjer en hvid kant */
+  box-shadow: 0px 2px 5px 1px rgba(0,0,0, 0.3); /* Tilføjer en skygge */
+}
+
+#spin_wrapper:after {
+  content: '';
+  position: absolute;
+  left: 50%; /* Centrerer lodret */
+  bottom: 100%; /* Placerer ved bunden af forældre elementet */
+  width: 14px; /* Sætter bredden til 14px */
+  height: 30px; /* Sætter højden til 30px */
+  margin-left: -7px; /* Flytter elementet til venstre for at centrere */
+  margin-bottom: -5px; /* Flytter elementet op */
+  border-style: solid; /* Angiver kantstil som solid */
+  border-color: transparent; /* Gør kanterne gennemsigtige */
+  border-width: 7px; /* Sætter bredden på alle kanter til 7px */
+  border-bottom: 0px; /* Fjerner bunden */
+  border-top: 30px solid #FFA514; /* Sætter topkanten til en orange farve */
+}
+
+#spin {
+  transform-origin: 50% 50%; /* Sætter transformationspunktet til midten */
+}
+
+.buttons-container {
+  justify-content: center; /* Centrerer indholdet horisontalt */
+}
+
+button {
+  padding: 10px 20px; /* Tilføjer padding til knappen */
+  font-size: 16px; /* Sætter skrifttypens størrelse til 16px */
+  cursor: pointer; /* Ændrer musemarkøren til en pegepind */
+}
